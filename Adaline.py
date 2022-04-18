@@ -39,14 +39,13 @@ class Adaline:
         for j in range(num_of_iterations):
             E = 0
             for i in range(train_length):
-                y_in = bias + self._weights[0] * X[i].x + self._weights[1] * X[i].y
-                t = Y
-                diff = (t - y_in)
-                if (t - y_in) > 0.0000001:
-                    self._weights[0] += alpha * diff * X[i].x
-                    self._weights[1] += alpha * diff * X[i].y
+                y_in = bias + self._weights[0] * X[i].getX() + self._weights[1] * X[i].getY()
+                diff = Y[i] - y_in
+                if diff > 0.0000001:
+                    self._weights[0] += alpha * diff * X[i].getX()
+                    self._weights[1] += alpha * diff * X[i].getY()
                     bias += alpha * diff
-                    E += diff ** 2
+                    E += pow(diff, 2)
             MSE = E / train_length
             if MSE < 0.0000001:
                 print(j, f'last MSE: {MSE:.14f}')
@@ -54,10 +53,11 @@ class Adaline:
             # print(f'{MSE:.14f}')
         return self._weights
 
-    def predict(self, X):
+    def predict(self, X_test):
+        # print(self._weights)
         predictions = []
-        for i in range(len(X)):
-            res = self._weights[0] * X[i].x + self._weights[1] * X[i].y
+        for i in range(len(X_test)):
+            res = self._weights[0] * X_test[i].getX() + self._weights[1] * X_test[i].getY()
             if res > 0:
                 predictions.append(1)
             else:
@@ -65,6 +65,6 @@ class Adaline:
         return predictions
 
 
-def score(predictions, answers):
-    correct = sum(i == answers[i] for i in predictions)
-    return correct / len(predictions)
+    def score(self, predictions, answers):
+        correct = sum(predictions[i] == answers[i] for i in range(len(predictions)))
+        return correct / len(predictions)
