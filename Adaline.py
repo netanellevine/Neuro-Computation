@@ -35,6 +35,7 @@ class Adaline:
         self.setAlpha(alpha)
         self._weights = [0.5, 0.5]
         bias = random.uniform(0.005, 1)
+        bias = 0.2
         train_length = len(X)
         for j in range(num_of_iterations):
             E = 0
@@ -47,7 +48,7 @@ class Adaline:
                     bias += alpha * diff
                     E += pow(diff, 2)
             MSE = E / train_length
-            if MSE < 0.0000001:
+            if MSE < 0.000000000000001:
                 print(j, f'last MSE: {MSE:.14f}')
                 break
             # print(f'{MSE:.14f}')
@@ -57,8 +58,8 @@ class Adaline:
         # print(self._weights)
         predictions = []
         for i in range(len(X_test)):
-            res = self._weights[0] * X_test[i].getX() + self._weights[1] * X_test[i].getY()
-            if res > 0:
+            res = self._weights[0] * X_test[i].getX() + self._weights[1] * X_test[i].getY() + self._weights[2]
+            if res > 0.0:
                 predictions.append(1)
             else:
                 predictions.append(-1)
