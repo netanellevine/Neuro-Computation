@@ -2,10 +2,7 @@ class Point:
     def __init__(self, x, y):
         self._x = x
         self._y = y
-        if y > 1:
-            self._value = 1
-        else:
-            self._value = -1
+        self._value = 1 if y > 1 else -1
 
     def getX(self):
         return self._x
