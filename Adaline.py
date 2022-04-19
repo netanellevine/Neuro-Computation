@@ -69,3 +69,4 @@ class Adaline:
     def score(self, predictions, answers):
         correct = sum(predictions[i] == answers[i] for i in range(len(predictions)))
         return correct / len(predictions)
+
