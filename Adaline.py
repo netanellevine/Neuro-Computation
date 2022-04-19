@@ -42,7 +42,7 @@ class Adaline:
             for i in range(train_length):
                 y_in = bias + self._weights[0] * X[i].getX() + self._weights[1] * X[i].getY()
                 diff = Y[i] - y_in
-                if diff > 0.0000001:
+                if diff != 0:
                     self._weights[0] += alpha * diff * X[i].getX()
                     self._weights[1] += alpha * diff * X[i].getY()
                     bias += alpha * diff
@@ -52,13 +52,14 @@ class Adaline:
                 print(j, f'last MSE: {MSE:.14f}')
                 break
             # print(f'{MSE:.14f}')
-        return self._weights
+        self._weights.append(bias)
 
     def predict(self, X_test):
         # print(self._weights)
         predictions = []
         for i in range(len(X_test)):
             res = self._weights[0] * X_test[i].getX() + self._weights[1] * X_test[i].getY() + self._weights[2]
+            ans = 1 if 4 <= (pow(X_test[i].getY(), 2) + pow(X_test[i].getX(), 2)) <= 9 else -1
             if res > 0.0:
                 predictions.append(1)
             else:
