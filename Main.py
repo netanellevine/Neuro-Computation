@@ -17,7 +17,7 @@ def create_X(num):
 def main():
     data_size = 1000
     num_of_iterations = 1000
-    learning_rate = 0.00001
+    learning_rate = 0.001
 
     # Part A:
     X_train = []
