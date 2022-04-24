@@ -40,7 +40,7 @@ class Adaline:
         for j in range(num_of_iterations):
             E = 0
             for i in range(train_length):
-                y_in = bias + self._weights[0] * X[i].getX() + self._weights[1] * X[i].getY()
+                y_in = (bias + self._weights[0] * X[i].getX() + self._weights[1] * X[i].getY()) / 100
                 diff = Y[i] - y_in
                 if diff != 0:
                     self._weights[0] += alpha * diff * X[i].getX()
