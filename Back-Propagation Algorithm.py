@@ -6,13 +6,15 @@ from matplotlib.colors import ListedColormap
 from sklearn.metrics import confusion_matrix
 from sklearn.neural_network import MLPClassifier
 from sklearn.neural_network._base import ACTIVATIONS
+from Point import Point
+from Adaline import Adaline
+import math
 data_size = 10000
-
 
 def partC(X_train, y_train, X_test, y_test, model):
     print("\nPart C\n")
     print("Score of correct prediction: ", model.score(X_test, y_test) * 100, "%")
-    diagram(model, X_train)
+    #diagram(model, X_train)
     show_area(X_test, y_test, model)
     get_cm(X_test, y_test, model)
 
@@ -97,12 +99,53 @@ def get_cm(X_test, y_test, model):
     plt.show()
 
 
+def partD(X_train, y_train, X_test, y_test, model):
+    print("\nPart D\n")
+    adaline = Adaline()
+    Adaline_with_MLP(adaline, model, X_train, y_train, X_test, y_test)
+
+
+
+def Adaline_with_MLP(adaline, MLP, X_train, y_train, X_test, y_test):
+    last_hidden_layer = get_layer(MLP, X_train, MLP.n_layers_ - 1)
+    X_train = []
+    for i in range(len(last_hidden_layer[0])):
+        X_train.append(Point(last_hidden_layer[0][i], last_hidden_layer[1][i]))
+
+    temp = X_test.copy()
+    X_test = []
+    print(temp.shape)
+    for i in range(temp.shape[0]):
+        X_test.append(Point(temp[i][0], temp[i][1]))
+
+    # adaline.fit(X_train, y_train)
+
+    # avg_bias = (MLP.coefs_[-1][0] + MLP.coefs_[-1][1])/2
+    # weights = np.zeros(3)
+    # weights[0] = MLP.intercepts_[1][0]
+    # weights[1] = MLP.intercepts_[1][1]
+    # weights[2] = (avg_bias)
+    # adaline.setWeights(weights)
+
+    predictions = adaline.predict(X_test)
+    score = adaline.score(predictions, y_test)
+    print(f'Adaline with MLP score: {score * 100}%')
+    # confusion matrix
+    cm = confusion_matrix(predictions, y_test)
+    plt.subplots()
+    sns.heatmap(cm, fmt=".0f", annot=True, cmap="Blues")
+    plt.title("Confusion matrix - Adaline")
+    plt.xlabel("Actual")
+    plt.ylabel("Predict")
+    plt.show()
+
 if __name__ == '__main__':
     # part C
     X_train, y_train = create_random_points(data_size, 10000)
     X_test, y_test = create_random_points(data_size, 10000)
-    classifier_mlp = MLPClassifier(activation='logistic', learning_rate_init=0.01,
-                                   hidden_layer_sizes=(8, 6), random_state=7)
+    classifier_mlp = MLPClassifier(activation='logistic', learning_rate_init=0.1,
+                                   hidden_layer_sizes=(8, 2), random_state=7)
     classifier_mlp.fit(X_train, y_train)
-    partC(X_train, y_train, X_test, y_test, classifier_mlp)
-    
+    #partC(X_train, y_train, X_test, y_test, classifier_mlp)
+
+    partD(X_train, y_train, X_test, y_test, classifier_mlp)
