@@ -7,7 +7,7 @@ from sklearn.neural_network import MLPClassifier
 from matplotlib.colors import ListedColormap as LCM
 from sklearn.neural_network._base import ACTIVATIONS as Act
 from mlxtend.classifier import Adaline
-data_size = 1000
+data_size = 10000
 
 
 def partC(X_train, y_train, X_test, y_test, model):
@@ -147,7 +147,7 @@ def show_areaD(X_test_orig, X_test, y_test, model, mlp):
     plt.ylim(yy.min(), yy.max())
     plt.scatter(x=X_test_orig[y_test == 0, 1], y=X_test_orig[y_test == 0, 0], c='red', alpha=0.5, label=-1.0)
     plt.scatter(x=X_test_orig[y_test == 1, 1], y=X_test_orig[y_test == 1, 0], c='green', alpha=0.5, label=1.0)
-    plt.title("Part D: Back propagation using MLP Algorithm")
+    plt.title("Part D: Adaline using Back propagation")
     plt.show()
 
 
