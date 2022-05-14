@@ -65,8 +65,7 @@ def get_layer(model, X, layer_index):
         return neurons
     # if the layer has only one neuron
     act(features)  # calculating the last layer activation function
-    neuron = model._label_binarizer.inverse_transform(features)  # getting the only level neuron
-    return neuron
+    return model._label_binarizer.inverse_transform(features)
 
 
 # Presenting the final test neurons distribution for part C
@@ -156,5 +155,5 @@ if __name__ == '__main__':
     X_test, y_test = create_random_points(data_size, 10000)
     classifier_mlp = MLPClassifier(activation='logistic', learning_rate_init=0.1, hidden_layer_sizes=(8, 2), random_state=7)
     classifier_mlp.fit(X_train, y_train)
-    partC(X_train, y_train, X_test, y_test, classifier_mlp)
+    # partC(X_train, y_train, X_test, y_test, classifier_mlp)
     partD(X_train, y_train, X_test, y_test, classifier_mlp)
