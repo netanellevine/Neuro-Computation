@@ -5,8 +5,9 @@
 - **Or Yitshak**
 - **Yahalom Chasid**  
 
-##Dataset:  
+## Dataset:  
 Our dataset holds 1000 2D points (x,y) and each point has a value that will mark it as **v**.
+
 ![](readme_pics/im0.png)
 
 As a reminder in part A, the value of **v** was determined by: 
@@ -17,7 +18,8 @@ As a reminder in part B, the value of **v** was determined by:
 
 ![](readme_pics/im2.png)
 
-##Part C 
+____________
+## Part C 
 
 In this part, we will try to improve our scores from parts A and B by using the Back-Propagation Algorithm with the MLP Classifier. 
 
@@ -92,7 +94,8 @@ We can see from the Confusion Matrix that the model doesn’t overfit:
 
 ![](readme_pics/Aspose.Words.a56d60de-3c55-4e00-a247-60954006dbd8.042.jpeg)![](readme_pics/Aspose.Words.a56d60de-3c55-4e00-a247-60954006dbd8.043.png)
 
-##Part D:
+_______________
+## Part D:
 
 In this part, we will use our trained neurons from the next to last level of part C as our input.   
 The last neuron will do the prediction according to the Adaline algorithm and not the Back-Propagation  
@@ -117,11 +120,11 @@ almost identical, which is why both of the scores are almost the same.
 
 From the Confusion Matrix, we can conclude that both models’ prediction was quite similar. 
 
-###Adaline with MLP 
+### Adaline with MLP 
 
 ![](readme_pics/Aspose.Words.a56d60de-3c55-4e00-a247-60954006dbd8.050.jpeg)
 
-###Back-Propagation with MLP
+### Back-Propagation with MLP
 
 ![](readme_pics/Aspose.Words.a56d60de-3c55-4e00-a247-60954006dbd8.051.jpeg)
 
