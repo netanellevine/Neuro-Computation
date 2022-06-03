@@ -1,9 +1,15 @@
 ﻿# Back-Propagation Algorithm Neural Networks
 
-- **Matan Yarin Shimon** 
 - **Netanel Levine** 
+- **Matan Yarin Shimon**
 - **Or Yitshak**
 - **Yahalom Chasid**  
+
+## About:
+In this project we will train a neural network to classify the points in the dataset.  
+We will give the network the points and the value of the points and the network will predict the value of the points (the value will be explained later).  
+We will use the Back-Propagation Algorithm to train the network.
+
 
 ## Dataset:  
 Our dataset holds 1000 2D points (x,y) and each point has a value that will mark it as **v**.
