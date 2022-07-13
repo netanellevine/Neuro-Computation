@@ -1,5 +1,5 @@
 # Neuro-Computation
-
+[D](Adaline%20and%20Back-Propagation%20Algorithms:Readme.md)
 ### About
 This project is an introduction to the fundamentals of the Neurocomputation world.  
 There are two parts to this project:
